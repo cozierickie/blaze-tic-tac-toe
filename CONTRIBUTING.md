@@ -59,7 +59,7 @@ To keep our repository in sync and avoid conflicts, we follow a disciplined push
 
 ### **Pulling Changes:**
 1. **Pull Before You Start**:
- - Before starting new work, pull the latest changes from `develop`.
+ - Before starting new work, pull the latest changes from `dev`.
  - Command: `git pull origin dev`
 
 2. **Resolve Conflicts Early**:
@@ -75,7 +75,7 @@ To keep our repository in sync and avoid conflicts, we follow a disciplined push
 
 ### **Merging Changes:**
 1. **Open a Pull Request (PR)**:
- - Once your feature is complete, open a PR to merge into `develop`.
+ - Once your feature is complete, open a PR to merge into `dev`.
  - Request at least one team member to review your PR.
 
 2. **Merge After Approval**:
