@@ -35,7 +35,7 @@ Follow these steps to set up a React.js project with Tailwind CSS using Vite for
 ### 4. **Clone the Repository:**
    - Clone the Git repository where the project files are hosted:
      ```
-     git clone https://github.com/blaze-alx/blaze-tic-tac-toe.git
+     git clone https://< your-github-token >github.com/blaze-alx/blaze-tic-tac-toe.git
      cd blaze-tic-tac-toe
      ```
 
