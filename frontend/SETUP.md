@@ -5,93 +5,62 @@
 
 Follow these steps to set up a React.js project with Tailwind CSS using Vite for bundling. The process covers both Linux and Windows OS.
 
-### 1. Installing Vite and Creating a React Project
-
-**On Linux and Windows:**
-
-1. **Install Node.js and npm (if you haven't already):**
-
-   - **Linux:** Open your terminal and run:
-     ```bash
+### 1. **Install Node.js and npm (if you haven't already):**
+   - **For Linux:** Open your terminal and run:
+     ```
      sudo apt update
      sudo apt install nodejs npm
      ```
+   - **For Windows:** Download and install Node.js from [nodejs.org](https://nodejs.org). The installer includes npm.
 
-   - **Windows:** Download and install Node.js from [nodejs.org](https://nodejs.org). The installer includes npm.
+### 2. **Ensure Git is Installed:**
+   - **For Linux:** Run:
+     ```
+     sudo apt update
+     sudo apt install git
+     ```
+   - **For Windows:** Download and install Git from [git-scm.com](https://git-scm.com).
 
-2. **Create a new Vite project:**
+### 3. **Verify Installations:**
+   - Check Node.js and npm:
+     ```
+     node -v
+     npm -v
+     ```
+   - Check Git:
+     ```
+     git --version
+     ```
 
-   Open a terminal and run:
-   ```bash
-   npm create vite@latest blaze-tic-tac-toe
-   ```
+### 4. **Clone the Repository:**
+   - Clone the Git repository where the project files are hosted:
+     ```
+     git clone https://< your-github-token >github.com/blaze-alx/blaze-tic-tac-toe.git
+     cd blaze-tic-tac-toe
+     ```
 
-    You'll be prompted to choose a framework. Select **React**.
-    Then, you’ll be prompted to select a variant. Choose **JavaScript + SWC**.
+### 5. **Navigate to the Project Directory:**
+   - Make sure you’re in the right directory where the `package.json` file is located:
+     ```
+     cd frontend
+     ```
 
-    Navigate to your project directory:
+### 6. **Install Project Dependencies:**
+   - Run:
+     ```
+     npm install
+     ```
 
-    ```bash
-    cd blaze-tic-tac-toe
-    ```
+### 7. **Check `.gitignore`:**
+   - Ensure the `.gitignore` file is set up properly to exclude `node_modules` and other unnecessary files.
 
-    Install project dependencies:
-    ```bash
-    npm install
-    ```
+### 8. **Confirm Configuration Files:**
+   - Make sure that `tailwind.config.js`, `postcss.config.js`, `vite.config.js`, and other config files are present and correctly set up.
 
-## 2. Setting Up Tailwind CSS
+### Once you’ve completed these steps, you can start the development server by running:
+   - Run:
+     ```
+     npm run dev
+     ```
+##### This will start the Vite development server, and it will provide a local URL (e.g., `http://localhost:5173`) where you can view your app.
 
-**Install Tailwind CSS:**
-
-**In your project directory, run:**
-
-```bash
-    npm install -D tailwindcss postcss autoprefixer
-```
-**Initialize Tailwind CSS:**
-
-Run the following command to create the configuration files:
-
-```bash
-    npx tailwindcss init -p
-```
-This will create `tailwind.config.js` and `postcss.config.js` in your project root.
-
-**Configure `tailwind.config.js`:**
-
-Update the content section in `tailwind.config.js` to include your project files:
-
-```javascript
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
-**Add Tailwind directives to your CSS:**
-
-Open `src/index.css` and add the following lines:
-
-```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-## 3. Running the Vite Development Server
-
-**Start the development server:**
-
-```bash
-    npm run dev
-```
-
-This will start the Vite development server, and it will provide a local URL (e.g., `http://localhost:5173`) where you can view your app.
-
-*NOTE:* It is recommended to update your npm to version 10.8.2 and ensure that your node version is v18.20.4 or above. Always go for the stable versions.
