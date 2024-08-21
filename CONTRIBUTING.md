@@ -8,25 +8,22 @@ We use a **feature-branch** workflow to keep our `main` branch stable and ready 
 
 ### **Branches:**
 - **`main`**: The stable branch that always contains production-ready code.
-- **`dev`**: The integration branch for testing features before they are merged into `main`.
 - **`feature/<feature-name>`**: Branches for individual features, prefixed with `feature/`.
 - **`bugfix/<bug-name>`**: Branches for fixing bugs, prefixed with `bugfix/`.
 - **`hotfix/<hotfix-name>`**: Branches for urgent fixes in production, prefixed with `hotfix/`.
 
 ### **Branching Process:**
 1. **Create a Feature Branch**: 
-   - Branch off from `dev` using a descriptive name.
+   - Branch off from `main` using a descriptive name.
    - Example: `feature/socket-io-integration`, `bugfix/fix-database-error`.
 
 2. **Work on Your Feature**:
    - Implement your feature or bugfix in the feature branch.
    - Keep your branch focused on a single feature or fix.
 
-3. **Merge to `dev`**:
-   - Once the feature is complete and tested, open a Pull Request (PR) to merge into `dev`.
+3. **Merge to `main`**:
+   - Once the feature is complete and tested, open a Pull Request (PR) to merge into `main`.
 
-4. **Release to `main`**:
-   - After all features are integrated and tested in `dev`, create a PR to merge into `main`.
 
 ## Commit Strategy
 
@@ -59,8 +56,8 @@ To keep our repository in sync and avoid conflicts, we follow a disciplined push
 
 ### **Pulling Changes:**
 1. **Pull Before You Start**:
- - Before starting new work, pull the latest changes from `dev`.
- - Command: `git pull origin dev`
+ - Before starting new work, pull the latest changes from `main`.
+ - Command: `git pull origin main`
 
 2. **Resolve Conflicts Early**:
  - If there are conflicts, resolve them as soon as possible to avoid integration issues later.
@@ -75,7 +72,7 @@ To keep our repository in sync and avoid conflicts, we follow a disciplined push
 
 ### **Merging Changes:**
 1. **Open a Pull Request (PR)**:
- - Once your feature is complete, open a PR to merge into `dev`.
+ - Once your feature is complete, open a PR to merge into `main`.
  - Request at least one team member to review your PR.
 
 2. **Merge After Approval**:
@@ -83,8 +80,26 @@ To keep our repository in sync and avoid conflicts, we follow a disciplined push
  - Squash and merge commits if necessary to keep the history clean.
 
 3. **Rebase if Necessary**:
- - If there are conflicts, rebase your branch against `dev` before merging.
- - Command: `git rebase dev`
+ - If there are conflicts, rebase your branch against `main` before merging.
+ - Command: `git rebase main`
+ - 
+   N.B
+   `git rebase main` is a powerful command that allows you to reapply your local commits on top of the latest changes from the main branch. Here's what it does:
+   - Temporarily removes your local commits
+   - Fetches the latest changes from the main branch
+   - Reapplies your local commits on top of the updated main branch
+   This process helps to:
+   - Keep a linear commit history
+   - Avoid merge commits
+   - Make your local changes appear as if they were made on top of the latest main branch changes
+   Note:
+   - If there are conflicts during the rebase, Git will pause and allow you to resolve them.
+   - Once conflicts are resolved, use `git rebase --continue` to continue the rebase process.
+   - If you want to abort the rebase, use `git rebase --abort`.
+   Remember to always rebase safely by:
+   - Making sure you're on the correct branch (`git checkout <your-branch>`)
+   - Committing or stashing any local changes before rebasing
+   - Being aware of any potential conflicts or changes that may occur during the rebase process.
 
 ## Final Notes
 
