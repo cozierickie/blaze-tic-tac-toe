@@ -16,7 +16,7 @@ This is the backend for the Tic-Tac-Toe game, featuring multiplayer support and 
 2. **Install Dependencies**
 
    ```bash
-   npm install pnpm # if you do not have pnpm installed already
+   npm install -g pnpm # if you do not have pnpm installed already
    pnpm install # to install associated packages
    ```
 
@@ -25,10 +25,11 @@ This is the backend for the Tic-Tac-Toe game, featuring multiplayer support and 
    Create a `.env` file in the root directory with the following content:
 
    - Ensure to have mongodb installed on your local machine
-
+   - Generate JWT with: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
    ```env
    MONGO_URI=mongodb://localhost:27017/tictactoe
-   PORT=3000
+   JWT_SECRET=<add JWT here>
+   PORT=5000
    ```
 
 4. **Start the Server**
@@ -41,6 +42,7 @@ This is the backend for the Tic-Tac-Toe game, featuring multiplayer support and 
 ## API Endpoints
 
 - **POST /api/users/register**: Register a new user
+- **POST /api/users/login**: Login an existing user
 - **POST /api/games/create**: Create a new game
 
 ## Socket.IO Events
