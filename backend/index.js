@@ -6,6 +6,7 @@ import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js';
 import gameRoutes from './routes/gameRoutes.js';
 import errorMiddleware from './middleware/errorMiddleware.js';
+import corsMiddleware from './middleware/corsMiddleware.js';
 
 dotenv.config();
 
@@ -13,6 +14,8 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+
+app.use(corsMiddleware);
 
 const server = http.createServer(app);
 const io = new Server(server, {
