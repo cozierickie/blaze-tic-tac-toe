@@ -6,6 +6,8 @@ import './index.css';
 import Home from './pages/Home.jsx';
 import Settings from './pages/Settings.jsx';
 import Game from './pages/Game.jsx';
+import Register from './pages/Register.jsx';
+import Login from './pages/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,14 @@ const router = createBrowserRouter([
     path: '/game',
     element: <Game />,
   },
+  {
+    path: '/Register',
+    element: <Register />,
+  },
+  {
+    path: '/Login',
+    element: <Login />,
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
