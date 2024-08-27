@@ -15,7 +15,7 @@ function Home() {
           </h1>
         </div>
 
-        <PrimaryButton href="/settings" label="Get Started" />
+        <PrimaryButton href="/register" label="Get Started" />
       </div>
 
       <DecorativeElements />
