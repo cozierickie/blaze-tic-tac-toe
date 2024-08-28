@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import LoginImage from '../assets/womanwithtab.webp';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import DecorativeElements from '../components/DecorativeElements';
 
@@ -8,18 +7,19 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
       const response = await axios.post('http://localhost:3000/api/users/login', {
         username,
         password,
       });
 
-      // Store token in local storage or state management for further use
       localStorage.setItem('token', response.data.token);
 
       setMessage(`Welcome, ${response.data.username}`);
@@ -32,49 +32,80 @@ const Login = () => {
       } else {
         setMessage('Request error: ' + error.message);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#1b1b32] relative overflow-hidden px-4">
-      <div className="flex flex-col md:flex-row max-w-3xl w-full bg-white rounded-2xl shadow-lg overflow-hidden">
-        <div className="flex-1 p-8 md:p-10 mt-6 md:mt-10">
-          <h2 className="mb-4 text-[#242424] text-2xl font-bold text-center">LOGIN</h2>
-          <p className="mb-6 text-center text-gray-500">Let's have some fun!</p>
-          <form onSubmit={handleLogin} className="space-y-4">
+    <div className="flex justify-center items-center h-screen bg-[#1b1b32] relative overflow-hidden">
+      <div className="bg-[#2a2a4a] p-8 rounded-lg shadow-lg w-full max-w-[400px]">
+        <h1 className="text-[#0074fc] text-[36px] font-bold text-center mb-8">
+          Login
+        </h1>
+
+        <p className="mb-6 text-center text-gray-300">Let's have some fun!</p>
+
+        <form onSubmit={handleLogin} className="space-y-6">
+          <div>
+            <label
+              htmlFor="username"
+              className="text-gray-300 font-semibold block mb-2"
+            >
+              Username
+            </label>
             <input
               type="text"
-              placeholder="Username"
+              id="username"
+              placeholder="Enter your username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              className="w-full py-2 px-4 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-[#0074fc]"
               required
-              className="block w-full p-2 mb-4 border border-gray-300 rounded-md"
             />
+          </div>
+
+          <div>
+            <label
+              htmlFor="password"
+              className="text-gray-300 font-semibold block mb-2"
+            >
+              Password
+            </label>
             <input
               type="password"
-              placeholder="Password"
+              id="password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              className="w-full py-2 px-4 rounded-lg bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-[#0074fc]"
               required
-              className="block w-full p-2 mb-4 border border-gray-300 rounded-md"
-              />
-              <button
-                type="submit"
-                className="block w-full p-2 mt-2 bg-[#6c63ff] text-white rounded-md hover:bg-[#5a54e2] transition-colors duration-300"
-              >
-                Login
-              </button>
-            </form>
-            {message && <p className="mt-4 text-center text-red-500">{message}</p>}
-            <p className="mt-4 text-center text-gray-500">Don't have an account? <a href="/Register" className="text-blue-700">Register</a></p>
+            />
           </div>
-          <div className="flex-1 bg-[#f0f2ff] flex justify-center items-center p-4 md:p-8">
-            <img src={LoginImage} alt="Login" className="max-w-full rounded-lg" />
-          </div>
-        </div>
-        <DecorativeElements />
-      </div>
-    );
-  };
 
-  export default Login;
+          <button
+            type="submit"
+            className="w-full bg-[#0074fc] hover:bg-red-600 text-white py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isLoading}
+          >
+            Login
+          </button>
+        </form>
+
+        {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+
+        <div className="mt-6 text-center">
+          <p className="text-gray-300">
+            Don&apos;t have an account?{' '}
+            <Link to="/register" className="text-[#0074fc] hover:underline">
+              Register
+            </Link>
+          </p>
+        </div>
+      </div>
+      <DecorativeElements />
+    </div>
+  );
+};
+
+export default Login;
