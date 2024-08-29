@@ -45,7 +45,6 @@ function GameBoard({
 
   const renderCell = (index) => {
     return (
-      // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
       <div
         key={index}
         onClick={() => handleClick(index)}
